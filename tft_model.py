@@ -6,7 +6,7 @@ Implementation of Temporal Fusion Transformers: https://arxiv.org/abs/1912.09363
 from torch import nn
 import math
 import torch
-import ipdb
+#import ipdb
 
 class QuantileLoss(nn.Module):
     ## From: https://medium.com/the-artificial-impostor/quantile-regression-part-2-6fdbc26b2629
@@ -204,7 +204,7 @@ class TFT(nn.Module):
         self.attn_heads = config['attn_heads']
         self.num_quantiles = config['num_quantiles']
         self.valid_quantiles = config['vailid_quantiles']
-        self.seq_length = config['seq_length']
+        self.seq_length = 192#config['seq_length']
         
         self.static_embedding_layers = nn.ModuleList()
         for i in range(self.static_variables):
@@ -391,7 +391,7 @@ class TFT(nn.Module):
         output = self.output_layer(output.view(self.batch_size, -1, self.hidden_size))
         
         
-        return  output,encoder_output, decoder_output, attn_output, attn_output_weights, encoder_sparse_weights, decoder_sparse_weights
+        return  output,encoder_output, decoder_output, attn_output, attn_output_weights, static_embedding, embeddings_encoder, embeddings_decoder
     
         
         

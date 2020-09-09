@@ -20,7 +20,7 @@ Defines dataset specific column definitions and data transformations.
 """
 
 import data_formatters.base
-import data_formatters.utils
+from data_formatters import utils
 import sklearn.preprocessing
 
 GenericDataFormatter = data_formatters.base.GenericDataFormatter
